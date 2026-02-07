@@ -1,0 +1,5 @@
+{
+  "name": "Multi-Agent Triage Command",
+  "description": "An automated clinical intelligence network dashboard for high-stakes medical triage monitoring with real-time agent coordination.",
+  "requestFramePermissions": []
+}

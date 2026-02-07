@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Triage Command</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #020617;
+            color: #e2e8f0;
+            margin: 0;
+            overflow-x: hidden;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        /* MEDICAL BACKGROUND CONTAINER */
+        .medical-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #030712 0%, #020617 100%);
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* LAYER 1: PULSING MEDICAL GRID WITH PERSPECTIVE */
+        .medical-grid {
+            position: absolute;
+            inset: -100px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
+            animation: gridPulse 12s ease-in-out infinite, gridFloat 60s linear infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        @keyframes gridFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(60px); }
+        }
+
+        /* LAYER 2: SCAN LINE EFFECT */
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.02), transparent);
+            top: -150px;
+            animation: scanMove 15s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0% { top: -20%; }
+            100% { top: 120%; }
+        }
+
+        /* LAYER 3: ECG WAVEFORM */
+        .ecg-layer {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            opacity: 0.08;
+            filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.5));
+            animation: ecgScroll 25s linear infinite;
+        }
+
+        @keyframes ecgScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ACCESSIBILITY */
+        @media (prefers-reduced-motion: reduce) {
+            .medical-grid, .scan-line, .ecg-layer {
+                animation: none !important;
+            }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
