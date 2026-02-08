@@ -91,7 +91,7 @@ def run_demo():
     try:
         system.run_simulation(case_inputs)
     except Exception as e:
-        print(Fore.RED + f"❌ Demo failed: {e}" + Style.RESET_ALL)
+        print(Fore.RED + f"❌Demo failed: {e}" + Style.RESET_ALL)
 
 if __name__ == "__main__":
     run_demo()
